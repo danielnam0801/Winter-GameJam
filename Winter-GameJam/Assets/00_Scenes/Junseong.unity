@@ -258,6 +258,7 @@ MonoBehaviour:
   currentDir: {x: 0, y: 0}
   detectedPlayer: 0
   isThink: 1
+  isWatingPlayerThrow: 0
 --- !u!50 &292943474
 Rigidbody2D:
   serializedVersion: 4
@@ -1259,6 +1260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e830ab184739640b94287c07287ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CountTimeWitPlayerCatch: 0.5
+  t: 0
 --- !u!1 &2042604331
 GameObject:
   m_ObjectHideFlags: 0

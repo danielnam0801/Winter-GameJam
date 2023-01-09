@@ -28,20 +28,21 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!detectedPlayer)
+        if (detectedPlayer)
         {
-            if(currentVelocity == 0 && isWatingPlayerThrow)
+            isThink=false;
+            currentVelocity = 0;
+        }
+        else
+        {
+            if(isWatingPlayerThrow)
             {
                 isThink = true;
                 isWatingPlayerThrow=false;
                 StartCoroutine("WaitingPlayerThrow");
+                Debug.Log("Waitin");
             }
             Move(this.firstPos.position, this.secondPos.position);
-        }
-        else
-        {
-            isThink=false;
-            currentVelocity = 0;
         }
 
         rb.velocity = new Vector2(currentVelocity, rb.velocity.y) * _movementSO.maxSpeed;

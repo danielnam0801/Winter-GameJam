@@ -9,6 +9,7 @@ public class DetectPlayer : MonoBehaviour
     PlayerMovement _playerMovement;
 
     public float CountTimeWitPlayerCatch = 0.3f; // 플레이어를 잡기 위한 최소 시간
+    public float t = 0;
 
     private void Start()
     {
@@ -22,24 +23,32 @@ public class DetectPlayer : MonoBehaviour
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             _enemyMovement.detectedPlayer = true;
-            _playerMovement.isAttacked = true;
+            //_playerMovement.isAttacked = true;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            float t = 0;
-            while () ;
+            t+= Time.deltaTime;
+            if(t > CountTimeWitPlayerCatch)
+            {
+                _playerMovement.isAttacked = true;
+            }
+            
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (_playerMovement.isAttacked)
         {
-            _enemyMovement.detectedPlayer = false;
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                _enemyMovement.detectedPlayer = false;
+            }
         }
+        t = 0;
     }
     
 }
