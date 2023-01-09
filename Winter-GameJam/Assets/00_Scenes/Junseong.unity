@@ -256,6 +256,8 @@ MonoBehaviour:
   firstPos: {fileID: 2042604332}
   secondPos: {fileID: 1410182289}
   currentDir: {x: 0, y: 0}
+  detectedPlayer: 0
+  isThink: 1
 --- !u!50 &292943474
 Rigidbody2D:
   serializedVersion: 4
@@ -1299,6 +1301,7 @@ GameObject:
   - component: {fileID: 2101463616}
   - component: {fileID: 2101463614}
   - component: {fileID: 2101463615}
+  - component: {fileID: 2101463612}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1306,6 +1309,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2101463612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101463611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c55fdbf8a1497646b71aea7e879d984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttackPlaying: 0
+  leftValue: 6
+  upValue: 7
+  backPower: 2
 --- !u!4 &2101463613
 Transform:
   m_ObjectHideFlags: 0
@@ -1393,6 +1412,7 @@ MonoBehaviour:
   onGround: 1
   onAir: 0
   isMoving: 0
+  isAttacked: 0
   jumpPower: 10
   _currentVelocity: 0
   underRayCastDistanceValue: 0.1

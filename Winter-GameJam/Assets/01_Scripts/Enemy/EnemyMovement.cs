@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyMovement : MonoBehaviour
 {
+    //public UnityEvent
     public MovementSO _movementSO;
     Rigidbody2D rb;
 
@@ -15,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
 
     public bool detectedPlayer = false;
     public bool isThink = true;
+    public bool isWatingPlayerThrow = false;
 
     private void Awake()
     {
@@ -27,10 +30,11 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!detectedPlayer)
         {
-            if(currentVelocity == 0)
+            if(currentVelocity == 0 && isWatingPlayerThrow)
             {
                 isThink = true;
-                currentVelocity = Random.Range(-1, 2);
+                isWatingPlayerThrow=false;
+                StartCoroutine("WaitingPlayerThrow");
             }
             Move(this.firstPos.position, this.secondPos.position);
         }
@@ -52,5 +56,12 @@ public class EnemyMovement : MonoBehaviour
         {
             currentVelocity = 1;
         }
+    }
+
+    IEnumerator WaitingPlayerThrow() //플레이어 던지고 나서 기다리는 시간
+    {
+        yield return new WaitForSeconds(0.5f);
+        currentVelocity = Random.Range(-1, 2);
+        isWatingPlayerThrow = true;
     }
 }

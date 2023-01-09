@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public bool onGround;
     public bool onAir;
     public bool isMoving = false;
+    public bool isAttacked;
 
     [Header("Player¼öÄ¡")]
     public float jumpPower = 10f;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     AgentRenderer agentRenderer;
     Rigidbody2D rb;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();    
@@ -42,8 +44,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
+        if (!isAttacked)
+        {
+            Move();
+            Jump();
+        }
         GroundCheck();
     }
 
