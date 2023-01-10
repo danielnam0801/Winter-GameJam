@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnemyType
+public enum EnemyTypes
 {
     AngleTransEnemy,
-    SideEnemy,
-    UpperDownEnemy,
-    radiationEnemy,
+    OnlyMoveSideEnemy,
+    OnlyMovesUpperDownEnemy,
+    humanTypeEnemy
+}
+
+public class EnemyTYpe : MonoBehaviour
+{
+    public EnemyTypes thisEnemyType;
 }

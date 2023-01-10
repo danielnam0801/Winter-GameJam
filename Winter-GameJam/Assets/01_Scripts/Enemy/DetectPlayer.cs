@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class DetectPlayer : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            t = 0;
             _enemyMovement.detectedPlayer = true;
             //_playerMovement.isAttacked = true;
         }
@@ -34,8 +36,8 @@ public class DetectPlayer : MonoBehaviour
             if(t > CountTimeWitPlayerCatch)
             {
                 _playerMovement.isAttacked = true;
-            }
             
+            }
         }
     }
 
@@ -45,10 +47,14 @@ public class DetectPlayer : MonoBehaviour
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                _enemyMovement.detectedPlayer = false;
+                StartCoroutine(MoveBooleanOn());
             }
         }
         t = 0;
     }
-    
+    IEnumerator MoveBooleanOn()
+    {
+        yield return new WaitForSeconds(1f);
+        _enemyMovement.detectedPlayer = false;
+    }
 }
