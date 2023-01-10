@@ -12,9 +12,12 @@ public class MoveIdle : Move
         if(t > thinkTime)
         {
             currentVelocity = Random.Range(-2f,3f);
-            if(currentVelocity == 0) while(currentVelocity != 0)
+            if(currentVelocity == 0)
             {
-                currentVelocity = Random.Range(-2f, 3f);    
+                while(currentVelocity != 0)
+                {
+                    currentVelocity = Random.Range(-2f, 3f);    
+                }
             }
             t = 0;
             thinkTime = Random.Range(3.5f, 5f);

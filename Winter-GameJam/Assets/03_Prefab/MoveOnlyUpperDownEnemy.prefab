@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2127627273797189930}
   - component: {fileID: 2787274596075932162}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5031226451307862535}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: firstPos
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -112,13 +112,14 @@ GameObject:
   m_Component:
   - component: {fileID: 5031226451339080131}
   - component: {fileID: 5031226451339080130}
+  - component: {fileID: 1763448074}
   m_Layer: 12
   m_Name: DetectPlayerCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5031226451339080131
 Transform:
   m_ObjectHideFlags: 0
@@ -163,6 +164,22 @@ PolygonCollider2D:
       - {x: -2.0856628, y: -4.896974}
       - {x: 2.1337204, y: -4.9041514}
       - {x: 0.20211768, y: -0.5647449}
+--- !u!114 &1763448074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031226451339080140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afdce8a662a25145922a4b7dc6f6de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftValue: 1
+  upValue: 3
+  backPower: 2
+  isPlayerCollision: 0
 --- !u!1 &5031226451802255100
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,9 +190,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5031226451802255091}
   - component: {fileID: 6190653404486850891}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MoveOnlyUpperDownEnemy
-  m_TagString: Untagged
+  m_TagString: UpperDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +236,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5031226451923508666}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SecondPos
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -252,9 +269,11 @@ GameObject:
   - component: {fileID: 5031226453040777050}
   - component: {fileID: 5031226453040777049}
   - component: {fileID: 6190653404822795191}
-  m_Layer: 0
+  - component: {fileID: 1989801327}
+  - component: {fileID: 1989801324}
+  m_Layer: 12
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: UpperDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,7 +331,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6190653404822795191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,3 +346,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSO: {fileID: 11400000, guid: 4c3ea338c73272943a15210c0fd6cce9, type: 2}
   currentVelocity: 1
+--- !u!60 &1989801327
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031226453040777028}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.14203787, y: 0.0057356358}
+      - {x: -4.786076, y: 2.0489795}
+      - {x: -4.8844285, y: -2.087357}
+--- !u!114 &1989801324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031226453040777028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afdce8a662a25145922a4b7dc6f6de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftValue: 1
+  upValue: 3
+  backPower: 2
+  isPlayerCollision: 0

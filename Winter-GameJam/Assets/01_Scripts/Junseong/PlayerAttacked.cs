@@ -13,11 +13,12 @@ public class PlayerAttacked : MonoBehaviour
 
     Rigidbody2D rigidbody;
     BoxCollider2D collider;
-
-    [SerializeField]
-    private float leftValue = 1f, upValue = 3f, backPower = 2f;
+    
+    public float leftValue = 1f, upValue = 3f, backPower = 2f;
 
     public bool isContacting = false;
+
+    IEnumerator backPowerCoroutine;
 
     private void Awake()
     {
@@ -31,48 +32,19 @@ public class PlayerAttacked : MonoBehaviour
       
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-
-    //    if(collision.collider.gameObject.layer == LayerMask.NameToLayer("NoDelayShootEnemy"))
-    //    {
-
-    //        if (collision.transform.GetComponentInParent<TriggerOnOff>().isPlayerCollision == false)
-    //        {
-    //            Debug.Log("isCOll");
-    //            StopCoroutine("NoWaitingShooting");
-    //            StartCoroutine("NoWaitingShooting");
-    //        }
-    //    }
-
-    //    if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-    //    {
-    //        isContacting = true;
-    //    }  
-    //}
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-    //    {
-    //        isContacting = false;
-    //    }
-    //    if (collision.collider.gameObject.layer == LayerMask.NameToLayer("NoDelayShootEnemy"))
-    //    {
-    //        isContacting = false;
-    //    }
-    //}
-
-    public void OnAttackedPlay(LayerMask layerName)
+    public void OnAttackedPlay(LayerMask layerName, float leftValue, float upValue, float backPower)
     {
+        backPowerCoroutine = NoWaitingShooting(leftValue, upValue, backPower);
         if (layerName == 12)
         {
             Debug.Log("NOWaiting");
-            StopCoroutine("NoWaitingShooting");
-            StartCoroutine("NoWaitingShooting");
+            if(backPowerCoroutine != null)
+                StopCoroutine(backPowerCoroutine);
+            else backPowerCoroutine = NoWaitingShooting(leftValue, upValue, backPower);
+            StartCoroutine(backPowerCoroutine);
         }
     }
-    IEnumerator NoWaitingShooting()
+    IEnumerator NoWaitingShooting(float leftValue, float upValue, float backPower)
     {
         isContactEvent.Invoke();
         rigidbody.velocity = Vector3.zero;

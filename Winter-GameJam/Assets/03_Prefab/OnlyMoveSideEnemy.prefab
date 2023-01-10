@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 1169563393130723152}
   - component: {fileID: 1169563393130723153}
   - component: {fileID: 1169563393130723154}
+  - component: {fileID: 1859108080}
   m_Layer: 11
   m_Name: DetectPlayerCol
   m_TagString: Untagged
@@ -106,6 +107,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CountTimeWitPlayerCatch: 0.5
   t: 0
+--- !u!114 &1859108080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169563393130723167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afdce8a662a25145922a4b7dc6f6de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftValue: 1
+  upValue: 3
+  backPower: 2
+  isPlayerCollision: 0
 --- !u!1 &1169563393460201583
 GameObject:
   m_ObjectHideFlags: 0
