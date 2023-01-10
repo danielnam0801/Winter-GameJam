@@ -44,9 +44,4 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         Menu.SetActive(false);
     }
-
-    public void ScoreMove()
-    {
-        
-    }
 }
