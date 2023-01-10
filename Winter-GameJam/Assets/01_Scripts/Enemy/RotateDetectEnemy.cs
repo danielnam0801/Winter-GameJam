@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectPlayer : MonoBehaviour
+public class RotateDetectEnemy : MonoBehaviour
 {
     PolygonCollider2D detectCollider;
-    EnemyMovement _enemyMovement;
+    RotateEnemy _rotateEnemy;
     PlayerMovement _playerMovement;
 
     public float CountTimeWitPlayerCatch = 0.3f; // 플레이어를 잡기 위한 최소 시간
@@ -15,16 +15,16 @@ public class DetectPlayer : MonoBehaviour
     private void Start()
     {
         detectCollider = GetComponent<PolygonCollider2D>();
-        _enemyMovement = transform.GetComponentInParent<EnemyMovement>();
+        _rotateEnemy = transform.GetComponentInParent<RotateEnemy>();
         _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             t = 0;
-            _enemyMovement.detectedPlayer = true;
+            _rotateEnemy.playerdetected = true;
             //_playerMovement.isAttacked = true;
         }
     }
@@ -32,8 +32,8 @@ public class DetectPlayer : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            t+= Time.deltaTime;
-            if(t > CountTimeWitPlayerCatch)
+            t += Time.deltaTime;
+            if (t > CountTimeWitPlayerCatch)
             {
                 _playerMovement.isCatched = true;
             }
@@ -54,6 +54,6 @@ public class DetectPlayer : MonoBehaviour
     IEnumerator MoveBooleanOn()
     {
         yield return new WaitForSeconds(1f);
-        _enemyMovement.detectedPlayer = false;
+        _rotateEnemy.playerdetected = false;
     }
 }

@@ -2,15 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject Menu;
     [SerializeField] GameObject CurrentScoreButton;
+    [SerializeField] TextMeshProUGUI distanceText;
+
+    GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = GameObject.Find("Manager").GetComponent<GameManager>();
+    }
+
     private void Update()
     {
         ESC();
+        ShowingDistance();
     }
 
     public void ESC()
@@ -22,6 +33,11 @@ public class UIManager : MonoBehaviour
             else
                 Menu.SetActive(true);
         }
+    }
+
+    public void ShowingDistance()
+    {
+        distanceText.text = gameManager.distanceTraveled.ToString() + "M";
     }
 
     public void ExitGame()
