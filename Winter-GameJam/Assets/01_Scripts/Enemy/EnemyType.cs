@@ -10,7 +10,7 @@ public enum EnemyTypes
     humanTypeEnemy
 }
 
-public class EnemyTYpe : MonoBehaviour
+public class EnemyType : MonoBehaviour
 {
     public EnemyTypes thisEnemyType;
 }

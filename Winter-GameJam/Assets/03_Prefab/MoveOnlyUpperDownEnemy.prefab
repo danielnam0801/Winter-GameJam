@@ -112,8 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5031226451339080131}
   - component: {fileID: 5031226451339080130}
-  - component: {fileID: 5031226451339080129}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: DetectPlayerCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,20 +163,6 @@ PolygonCollider2D:
       - {x: -2.0856628, y: -4.896974}
       - {x: 2.1337204, y: -4.9041514}
       - {x: 0.20211768, y: -0.5647449}
---- !u!114 &5031226451339080129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5031226451339080140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e830ab184739640b94287c07287ecf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CountTimeWitPlayerCatch: 0.5
-  t: 0
 --- !u!1 &5031226451802255100
 GameObject:
   m_ObjectHideFlags: 0

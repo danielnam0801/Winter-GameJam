@@ -35,15 +35,14 @@ public class DetectPlayer : MonoBehaviour
             t+= Time.deltaTime;
             if(t > CountTimeWitPlayerCatch)
             {
-                _playerMovement.isAttacked = true;
-            
+                _playerMovement.isCatched = true;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (_playerMovement.isAttacked)
+        if (_playerMovement.isCatched)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
             {

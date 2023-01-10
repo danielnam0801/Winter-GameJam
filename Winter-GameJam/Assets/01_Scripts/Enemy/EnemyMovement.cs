@@ -9,7 +9,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] Transform firstPos;
     [SerializeField] Transform secondPos;
 
-    EnemyTYpe enemyTypes;
+    EnemyType enemyTypes;
     EnemyTypes enemyType;
     Rigidbody2D rb;
 
@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        enemyTypes = this.GetComponentInParent<EnemyTYpe>();
+        enemyTypes = this.GetComponentInParent<EnemyType>();
         this.enemyType = enemyTypes.thisEnemyType;
         MoveInit();
     }
@@ -38,6 +38,10 @@ public class EnemyMovement : MonoBehaviour
         if(enemyType == EnemyTypes.OnlyMoveSideEnemy)
         {
             movement = GetComponent<MoveX>();
+        }
+        if(enemyType == EnemyTypes.humanTypeEnemy)
+        {
+            movement = GetComponent<MoveIdle>();
         }
     }
 
@@ -56,6 +60,7 @@ public class EnemyMovement : MonoBehaviour
         if (enemyType == EnemyTypes.OnlyMoveSideEnemy)
         {
             OnlyMoveSideEMY();
+            Flip();
         }
         #endregion
         #region OnlyMoveUpperDown
@@ -67,10 +72,18 @@ public class EnemyMovement : MonoBehaviour
         #region humanType
         if (enemyType == EnemyTypes.humanTypeEnemy)
         {
-
+            OnHumanMoveEmy();
+            Flip();
         }
         #endregion
     }
+
+    void Flip()
+    {
+        if (currentVelocity > 0) transform.rotation = Quaternion.Euler(0,180f,0);
+        if (currentVelocity < 0) transform.rotation = Quaternion.Euler(0,0,0);
+    }
+
     private void PlayerDetectedCheck()
     {
         if (detectedPlayer)
@@ -88,6 +101,11 @@ public class EnemyMovement : MonoBehaviour
             }
             movement.Moving(firstPos.position, secondPos.position);
         }
+    }
+    private void OnHumanMoveEmy()
+    {
+        movement.Moving(firstPos.position, secondPos.position);
+        rb.velocity = new Vector2(currentVelocity, 0) * movement.moveSO.maxSpeed;
     }
 
     private void OnlyMoveSideEMY()

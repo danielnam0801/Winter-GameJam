@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public bool onGround;
     public bool onAir;
     public bool isMoving = false;
-    public bool isAttacked;
+    public bool isCatched;
 
     [Header("Player¼öÄ¡")]
     public float jumpPower = 10f;
@@ -29,9 +29,11 @@ public class PlayerMovement : MonoBehaviour
     
 
     [SerializeField] Transform pos;
+    [SerializeField] Transform pos2;
     [SerializeField] float Radius;
 
     AgentRenderer agentRenderer;
+    PlayerAttacked playerAttacked;
     Rigidbody2D rb;
 
 
@@ -39,12 +41,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();    
         agentRenderer = transform.Find("VisualSprite").GetComponent<AgentRenderer>();
+        playerAttacked = GetComponent<PlayerAttacked>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isAttacked)
+        if (!isCatched)
         {
             Move();
             Jump();
@@ -122,7 +125,13 @@ public class PlayerMovement : MonoBehaviour
     private void GroundCheck()
     {
         onGround = Physics2D.OverlapCircle(pos.position, Radius, Define.Ground);
-        onAir = !onGround;
+        onAir = !Physics2D.OverlapCircle(pos.position, Radius, Define.Ground);
+        if (onAir == false) onGround = true;
+
+        if(onGround == true && !playerAttacked.isContacting)
+        {
+            isCatched = false;
+        }
     }
 
     private void Jump()
