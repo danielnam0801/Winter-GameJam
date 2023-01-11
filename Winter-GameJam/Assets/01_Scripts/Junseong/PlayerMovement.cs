@@ -17,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
     public bool onAir;
     public bool isMoving = false;
     public bool isCatched;
+    public bool isCanHide;
+    public bool isHiding;
+    public bool isHidingPlaying = false;
+    public bool isWall;
 
     [Header("Player¼öÄ¡")]
     public float jumpPower = 10f;
@@ -29,19 +33,33 @@ public class PlayerMovement : MonoBehaviour
     
 
     [SerializeField] Transform pos;
-    [SerializeField] Transform pos2;
+    [SerializeField] Transform leftPos;
+    [SerializeField] Transform rightPos;
+
     [SerializeField] float Radius;
 
     AgentRenderer agentRenderer;
     PlayerAttacked playerAttacked;
     Rigidbody2D rb;
+    BoxCollider2D boxCollider;
+    AgentAnimation playerAnim;
+    private bool canMove = true;
 
-
-    void Start()
+    void Awake()
     {
+        canMove = true;
+        boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();    
         agentRenderer = transform.Find("VisualSprite").GetComponent<AgentRenderer>();
         playerAttacked = GetComponent<PlayerAttacked>();
+        playerAnim = transform.Find("VisualSprite").GetComponent<AgentAnimation>();
+    }
+
+    void Start()
+    {
+        leftPos.position = boxCollider.bounds.center - new Vector3(boxCollider.bounds.size.x / 2, 0, 0);
+        rightPos.position = boxCollider.bounds.center + new Vector3(boxCollider.bounds.size.x / 2, 0, 0);
+        pos.position = boxCollider.bounds.center - new Vector3(0,boxCollider.bounds.size.y / 2, 0);
     }
 
     // Update is called once per frame
@@ -49,10 +67,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isCatched)
         {
-            Move();
-            Jump();
+            if (isWall && onAir)
+            {
+                Move();
+            }
+            else
+            {
+                Move();
+                Jump();
+            }
+            Hiding();
         }
         GroundCheck();
+        HidingCheck();
+        
+        if(_currentVelocity != 0) playerAnim.Moving(true);
+        else playerAnim.Moving(false);
+        playerAnim.Hiding(isHiding);
     }
 
     private void Move()
@@ -72,6 +103,13 @@ public class PlayerMovement : MonoBehaviour
             OnStop?.Invoke();
         }
         rb.velocity = new Vector2(_currentVelocity, rb.velocity.y);
+
+        if (isCanHide && !onGround)
+        {
+            rb.velocity = Vector2.zero;
+            rb.AddForce(new Vector2(_currentVelocity * -0.05f, 0f), ForceMode2D.Impulse);
+        }
+        if (isHidingPlaying) isHidingPlaying = false;
     }
 
     private void DeAccelSpeed()
@@ -124,21 +162,47 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        onGround = Physics2D.OverlapCircle(pos.position, Radius, Define.Ground);
-        onAir = !Physics2D.OverlapCircle(pos.position, Radius, Define.Ground);
+        onGround = Physics2D.Raycast(pos.position, Vector2.down, 0.1f, Define.Ground);
+        onAir = !onGround;
         if (onAir == false) onGround = true;
 
         if(onGround == true && !playerAttacked.isContacting)
         {
             isCatched = false;
         }
+
+        playerAnim.IsGround(onGround);
+    }
+    private void HidingCheck()
+    {
+        RaycastHit2D leftCheck = Physics2D.Raycast(leftPos.position, Vector2.left, 0.1f, Define.Ground);
+        RaycastHit2D rightCheck = Physics2D.Raycast(rightPos.position, Vector2.right, 0.1f, Define.Ground);
+        
+        isWall = leftCheck | rightCheck;
+        isCanHide = onGround && (leftCheck | rightCheck);
     }
 
     private void Jump()
     {
         if(onGround && Input.GetKeyDown(KeyCode.Space))
         {
+            playerAnim.IsJumping();
+            rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
+        }
+    }
+
+    private void Hiding()
+    {
+        if(isCanHide && onGround && isHidingPlaying == false)
+        {
+            isHidingPlaying = true;
+            isHiding = true;
+            playerAnim.DoHide();
+        }
+        else
+        {
+            isHiding=false;
         }
     }
 
