@@ -15,7 +15,7 @@ public class RotateDetectEnemy : MonoBehaviour
     Transform target;
     PlayerAttacked playerAttacked;
 
-    public float CountTimeWitPlayerCatch = 0.3f; // 플레이어를 잡기 위한 최소 시간
+    public float CountTimeWitPlayerCatch = 2f; // 플레이어를 잡기 위한 최소 시간
     //public float t = 0;
     //public float lightAngle = 0;
     //public float lightRadius = 0;
@@ -27,7 +27,10 @@ public class RotateDetectEnemy : MonoBehaviour
 
     public bool isCanDetect=false;
     public bool isPlayerDetect;
+    public bool isPlayerDetectCount = false;
     private bool canAttack = true;
+
+    Coroutine playerCheckCoroutine;
 
     private void Awake()
     {
@@ -60,17 +63,21 @@ public class RotateDetectEnemy : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(playerAttacked.isAttacked == false)
         {
-            PlayerCheck();
-            isCanDetect = true;
-            if (isPlayerDetect)
+            if (collision.CompareTag("Player"))
             {
-                if (canAttack)
+                PlayerCheck();
+                isCanDetect = true;
+                if (isPlayerDetect)
                 {
-                    playerAttacked.OnAttackedPlay(13, leftValue, upValue, backPowerValue);
-                    canAttack = false;
-                    Debug.Log(this.gameObject.layer);
+                    if (canAttack)
+                    {
+                        isPlayerDetectCount = true;
+                        StartCoroutine("PlayerWaitingCheck");
+                        canAttack = false;
+                        Debug.Log(this.gameObject.layer);
+                    }
                 }
             }
         }
@@ -81,7 +88,8 @@ public class RotateDetectEnemy : MonoBehaviour
         {
             isCanDetect=false;
             canAttack=true;
-        }   
+        }
+        if (isPlayerDetectCount) StopCoroutine("PlayerWaitingCheck");
     }
 
     private void PlayerCheck()
@@ -105,6 +113,14 @@ public class RotateDetectEnemy : MonoBehaviour
                 isPlayerDetect = false;
             }
         }
+    }
+
+    IEnumerator PlayerWaitingCheck()
+    {
+        
+        yield return new WaitForSeconds(CountTimeWitPlayerCatch);
+        isPlayerDetectCount = false;
+        playerAttacked.OnWaitAttackedPlay(13, leftValue, upValue, backPowerValue, target.transform);
     }
 
 }
