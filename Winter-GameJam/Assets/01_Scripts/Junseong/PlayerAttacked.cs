@@ -33,8 +33,9 @@ public class PlayerAttacked : MonoBehaviour
       
     }
 
-    public void OnAttackedPlay(LayerMask layerName, float leftValue, float upValue, float backPower)
+    public void OnAttackedPlay(int layerName, float leftValue, float upValue, float backPower)
     {
+        Debug.Log(layerName); // layer가 NoWaitingEnemy일때 12를 넘겨줘야함
         if (layerName == 12)
         {
             Debug.Log("NOWaiting");
@@ -43,7 +44,7 @@ public class PlayerAttacked : MonoBehaviour
                 StopCoroutine(backPowerCoroutine);
             StartCoroutine(backPowerCoroutine);
         }
-        if(layerName == 13)
+        else if(layerName == 13) // layer가 WaitingEnemy일때 13을 넘겨줘야함
         {
             Debug.Log("Waiting");
             backPowerCoroutine = WaitingShooting(leftValue, upValue, backPower);
@@ -66,14 +67,15 @@ public class PlayerAttacked : MonoBehaviour
 
     IEnumerator WaitingShooting(float leftValue, float upValue, float backPower)
     {
+        Debug.LogError("감지 성공");
         yield return null;
-        //isNoWatingContactEvent.Invoke();
-        //rigidbody.velocity = Vector3.zero;
-        //playerMovement.isCatched = true;
-        //yield return new WaitForSeconds(0.05f);
-        //rigidbody.AddForce((Vector2.left * leftValue + Vector2.up * upValue) * backPower, ForceMode2D.Impulse);
+        isNoWatingContactEvent.Invoke();
+        rigidbody.velocity = Vector3.zero;
+        playerMovement.isCatched = true;
+        yield return new WaitForSeconds(0.05f);
+        rigidbody.AddForce((Vector2.left * leftValue + Vector2.up * upValue) * backPower, ForceMode2D.Impulse);
 
-        //yield return new WaitUntil(() => playerMovement.onGround);
-        //playerMovement.isCatched = false;
+        yield return new WaitUntil(() => playerMovement.onGround);
+        playerMovement.isCatched = false;
     }
 }

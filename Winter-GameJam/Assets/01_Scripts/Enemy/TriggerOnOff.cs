@@ -31,7 +31,7 @@ public class TriggerOnOff : MonoBehaviour
                 if (playerDetectCount == 1)
                 {
                     isPlayerCollision = true;
-                    playerAttacked.OnAttackedPlay(this.gameObject.layer,leftValue,upValue,backPower);
+                    playerAttacked.OnAttackedPlay(12,leftValue,upValue,backPower);
                     Debug.Log($"트리거 온 된 오브젝트 : {this.transform.parent.name}");
                 }
             }

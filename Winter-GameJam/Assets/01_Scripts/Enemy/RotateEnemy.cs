@@ -38,6 +38,7 @@ public class RotateEnemy : MonoBehaviour
 
     public void SetFalloff(float falloff)
     {
+        if(isCanTwinkle)
         m_FalloffField.SetValue(light2D, falloff);
     }
 

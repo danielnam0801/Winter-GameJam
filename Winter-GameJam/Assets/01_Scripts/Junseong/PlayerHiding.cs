@@ -30,7 +30,7 @@ public class PlayerHiding : MonoBehaviour
         }
         if(Input.GetKeyDown(tranBlockKey) && isCanTranBlock)
         {
-            anim.TransfBlock(); // 내일 애니메이션 연결해야함
+            //anim.TransfBlock(); // 내일 애니메이션 연결해야함
         }
     }
 
