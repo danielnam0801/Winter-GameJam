@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public List<GameObject> StartMabs = new List<GameObject>();
+    [Header("스폰할 맵 종류")]
+    public List<GameObject> StartSpawnMap = new List<GameObject>();
     public List<GameObject> Mabs = new List<GameObject>();
+    [Header("실제 활성화 맵")]
+    public List<GameObject> activeMaps = new List<GameObject>();
+    public List<Map> SpawnMabs = new List<Map>();
 
     [SerializeField] private float xWidth = 14.16f;
     [SerializeField] private float yWidth = -6.73f;
@@ -13,8 +17,10 @@ public class SpawnManager : MonoBehaviour
     public int mapSpawnCnt = 0;
 
     public bool canSpawnMap = false;
+    public int currentMapindex = 0; 
 
     GameManager gameManger;
+    public bool canCheckMap = false;
 
     private void Start()
     {
@@ -24,24 +30,58 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator MapSpawn()
     {
-        for(int i = 0; i < StartMabs.Count; i++)
+        for(int i = 0; i < StartSpawnMap.Count; i++)
         {
             mapSpawnCnt++;
-            Instantiate(StartMabs[i], new Vector2(i * xWidth, yWidth), Quaternion.identity);
+            Map map = new Map(); 
+            map = StartSpawnMap[i].GetComponent<Map>();
+            map.mapNum = mapSpawnCnt - 1;
+            map.gameObject.transform.position = new Vector3((map.mapNum) * xWidth, yWidth, 0); 
+            SpawnMabs.Add(map);
+            activeMaps.Add(Instantiate(map.gameObject));
         }
         yield return null;
         while (true)
         {
             if (gameManger.EndGame)
             {
+                Debug.Log("EndGame");
                 break;
             }
             if (canSpawnMap == true)
             {
                 canSpawnMap = false;
-                int RandomMapIndex = UnityEngine.Random.Range(0,Mabs.Count);
+
                 mapSpawnCnt++;
-                Instantiate(Mabs[RandomMapIndex], new Vector2((mapSpawnCnt - 1) * xWidth, yWidth), Quaternion.identity);
+                int RandomMapIndex = UnityEngine.Random.Range(0,Mabs.Count);
+
+                Map map = new Map(); 
+                map = Mabs[RandomMapIndex].GetComponent<Map>();
+                map.mapNum = mapSpawnCnt - 1;
+                map.gameObject.transform.position = new Vector3(map.mapNum * xWidth, yWidth, 0);
+                SpawnMabs.Add(map);
+                activeMaps.Add(Instantiate(map.gameObject));
+            }
+            if (canCheckMap)
+            {
+                foreach (Map maps in SpawnMabs)
+                {
+                    if (activeMaps[maps.mapNum].activeSelf == true)
+                    {
+                        if (maps.mapNum < currentMapindex - 2 || maps.mapNum > currentMapindex + 2)
+                        {
+                            if(maps.mapNum >= 0)
+                                activeMaps[maps.mapNum].SetActive(false);
+                        }
+                    }
+                    else
+                    {
+                        if (maps.mapNum >= currentMapindex - 2 && maps.mapNum <= currentMapindex + 2)
+                        {
+                            activeMaps[maps.mapNum].SetActive(true);
+                        }
+                    }
+                }
             }
 
             yield return null;

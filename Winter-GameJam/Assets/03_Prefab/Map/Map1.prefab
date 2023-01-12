@@ -5489,6 +5489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8935813931910137170}
+  - component: {fileID: 723554943}
   m_Layer: 0
   m_Name: Map1
   m_TagString: Untagged
@@ -5504,7 +5505,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8615247370640715247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 127.44, y: -6.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5267029536244357487}
@@ -5518,6 +5519,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &723554943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8615247370640715247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8544691a31872574a826e58ffa63db66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapNum: 9
 --- !u!1 &8776149317811320748
 GameObject:
   m_ObjectHideFlags: 0
