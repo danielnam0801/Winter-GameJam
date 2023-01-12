@@ -20,7 +20,7 @@ public class RobotArmCode : MonoBehaviour
     {
         if(collision.CompareTag("Player")){
 
-            canCatch = true;
+            canCatch = true;   
         }
     }
 

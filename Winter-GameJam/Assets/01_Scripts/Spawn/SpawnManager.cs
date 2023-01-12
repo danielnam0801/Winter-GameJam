@@ -33,11 +33,11 @@ public class SpawnManager : MonoBehaviour
         for(int i = 0; i < StartSpawnMap.Count; i++)
         {
             mapSpawnCnt++;
-            Map map = StartSpawnMap[i].GetComponent<Map>();
+            Map map = Instantiate(StartSpawnMap[i].GetComponent<Map>());
             map.mapNum = mapSpawnCnt - 1;
             map.gameObject.transform.position = new Vector3((map.mapNum) * xWidth, yWidth, 0); 
             SpawnMabs.Add(map);
-            activeMaps.Add(Instantiate(map.gameObject));
+            activeMaps.Add(map.gameObject);
         }
         yield return null;
         while (true)
@@ -54,11 +54,11 @@ public class SpawnManager : MonoBehaviour
                 mapSpawnCnt++;
                 int RandomMapIndex = UnityEngine.Random.Range(0,Mabs.Count);
 
-                Map map = Mabs[RandomMapIndex].GetComponent<Map>();
+                Map map = Instantiate(Mabs[RandomMapIndex].GetComponent<Map>());
                 map.mapNum = mapSpawnCnt - 1;
                 map.gameObject.transform.position = new Vector3(map.mapNum * xWidth, yWidth, 0);
                 SpawnMabs.Add(map);
-                activeMaps.Add(Instantiate(map.gameObject));
+                activeMaps.Add(map.gameObject);
             }
             if (canCheckMap)
             {

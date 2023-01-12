@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - UpperDown
   - RobotArm
+  - Poison
   layers:
   - Default
   - TransparentFX

@@ -19,6 +19,7 @@ public class DetectPlayerSoundPlayer : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
         target = GameObject.Find("Player").transform;
         checkSoundCollider = GetComponent<CircleCollider2D>();
         maxDistance = checkSoundCollider.radius/2;

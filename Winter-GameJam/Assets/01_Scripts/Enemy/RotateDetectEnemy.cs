@@ -86,6 +86,10 @@ public class RotateDetectEnemy : MonoBehaviour
                     StopCoroutine("PlayerWaitingCheck");
                 }
             }
+            if (collision.gameObject.layer == 1 << 7 || collision.gameObject.layer == 1 << 9)
+            {
+                isPlayerDetect = false;
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

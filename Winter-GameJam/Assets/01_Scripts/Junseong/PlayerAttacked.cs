@@ -13,10 +13,12 @@ public class PlayerAttacked : MonoBehaviour
     public UnityEvent isWatingContactEvent; // ´ê°í ·Îº¿ÆÈÀÌ ´øÁö´Â ÀûÀÏ¶§ ½ÇÇàÇÒ °Í
     public UnityEvent CinemachineEvent;
 
+    public UnityEvent PlayerDieEvent;
+
     PlayerMovement playerMovement;
 
     Rigidbody2D rigidbody;
-    BoxCollider2D collider;
+    BoxCollider2D collider; 
     
     public float leftValue = 1f, upValue = 3f, backPower = 2f;
 
@@ -87,11 +89,14 @@ public class PlayerAttacked : MonoBehaviour
         GameObject robot = Instantiate(robotArm, new Vector2(playerStopTransform.position.x, playerStopTransform.position.y), Quaternion.identity);
         isWatingContactEvent?.Invoke();
         yield return new WaitUntil(()=>robot.GetComponentInChildren<RobotArm>().isPlayAnimEnd == true);
+        ColliderActiveFalse(false);
         isAttacked = false;
         rigidbody.gravityScale = 0f;
         rigidbody.velocity = Vector3.zero;
         yield return new WaitForSeconds(0.05f);
         rigidbody.AddForce((Vector2.left * leftValue + Vector2.up * upValue) * backPower, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.5f);
+        ColliderActiveFalse(true);
 
         rigidbody.gravityScale = 2f;
 
@@ -101,10 +106,14 @@ public class PlayerAttacked : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("RobotArm"))
+        if (collision.collider.gameObject.layer == 1 << 21)
         {
-            //TransformPOS = collision.transform.GetChild(2).transform.position;
-            Debug.Log(collision.gameObject.name);
+            PlayerDieEvent?.Invoke();
         }
+    }
+
+    public void ColliderActiveFalse(bool boolean)
+    {
+        collider.enabled = boolean;
     }
 }

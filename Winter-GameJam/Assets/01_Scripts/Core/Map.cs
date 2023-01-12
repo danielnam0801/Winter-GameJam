@@ -8,6 +8,7 @@ public class Map : MonoBehaviour
     
     private void Awake()
     {
+        
     }
 
 }
