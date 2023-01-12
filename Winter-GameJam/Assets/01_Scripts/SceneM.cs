@@ -8,7 +8,7 @@ public class SceneM : MonoBehaviour
     [SerializeField] float time;
     [SerializeField] string SceneName;
 
-    public void SceneMove()
+    public void SceneMove(string Scene)
     {
         StartCoroutine(MoveScene());
     }
