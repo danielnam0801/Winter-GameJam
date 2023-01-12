@@ -6,16 +6,15 @@ using UnityEngine.SceneManagement;
 public class SceneM : MonoBehaviour
 {
     [SerializeField] float time;
-    [SerializeField] string SceneName;
 
-    public void SceneMove(string Scene)
+    public void SceneMove(string scene)
     {
-        StartCoroutine(MoveScene());
+        StartCoroutine(MoveScene(scene));
     }
 
-    IEnumerator MoveScene()
+    IEnumerator MoveScene(string scene)
     {
         yield return new WaitForSeconds(time);
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(scene);
     }
 }
