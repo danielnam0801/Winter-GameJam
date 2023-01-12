@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6974067159794396139, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 19.64
       objectReference: {fileID: 0}
     - target: {fileID: 6974067159794396139, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -521,7 +521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 639862715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 19.64, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -660,7 +660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986387096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.434816, y: -0.4066357, z: 0}
+  m_LocalPosition: {x: 16.205183, y: -0.4066357, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5602,7 +5602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338601309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 19.64, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2064579130}
@@ -5733,12 +5733,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d38681320f1a943a9f848adbb11bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartMabs: []
+  StartSpawnMap: []
   Mabs: []
+  activeMaps: []
+  SpawnMabs: []
   xWidth: 14.16
   yWidth: -6.73
   mapSpawnCnt: 0
   canSpawnMap: 0
+  currentMapindex: 0
+  canCheckMap: 0
 --- !u!1 &2064579129
 GameObject:
   m_ObjectHideFlags: 3
