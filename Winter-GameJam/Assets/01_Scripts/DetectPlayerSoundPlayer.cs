@@ -48,7 +48,7 @@ public class DetectPlayerSoundPlayer : MonoBehaviour
     private void SoundControll()
     {
         float soundValue = Vector3.Distance(target.position, transform.position);
-        audioSource.volume = soundValue / maxDistance;
+        audioSource.volume = 1/(soundValue / maxDistance);
 
     }
 

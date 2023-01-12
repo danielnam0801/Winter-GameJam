@@ -55,28 +55,32 @@ public class DetectPlayer : MonoBehaviour
     {
         if (playerAttacked.isAttacked == false)
         {
-            if (collision.CompareTag("Player"))
+            if (collision.gameObject.layer == 7 || collision.gameObject.layer == 9)
             {
-                PlayerCheck();
-                isCanDetect = true;
-                if (isPlayerDetect)
+
+            }
+            else
+            {
+                if (collision.CompareTag("Player"))
                 {
-                    if (canAttack)
+                    //Debug.Log("PlayerDeTECT¼º°ø");
+                    PlayerCheck();
+                    isCanDetect = true;
+                    if (isPlayerDetect)
                     {
-                        isPlayerDetectCount = true;
-                        StartCoroutine("PlayerWaitingCheck");
-                        canAttack = false;
-                        Debug.Log(this.gameObject.layer);
+                        if (canAttack)
+                        {
+                            isPlayerDetectCount = true;
+                            StartCoroutine("PlayerWaitingCheck");
+                            canAttack = false;
+                            Debug.Log(this.gameObject.layer);
+                        }
+                    }
+                    else
+                    {
+                        StopCoroutine("PlayerWaitingCheck");
                     }
                 }
-                else
-                {
-                    StopCoroutine("PlayerWaitingCheck");
-                }
-            }
-            if(collision.gameObject.layer == 1 << 7 || collision.gameObject.layer == 1 << 9)
-            {
-                isPlayerDetect = false;
             }
         }
     }
