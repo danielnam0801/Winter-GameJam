@@ -8,14 +8,14 @@ using DG.Tweening;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject Menu;
-    [SerializeField] GameObject CurrentScoreButton;
+    [SerializeField] PlayerMovement moveMent;
     [SerializeField] TextMeshProUGUI distanceText;
 
     GameManager gameManager;
 
     private void Awake()
     {
-        gameManager = GameObject.Find("Manager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -29,15 +29,22 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Menu.activeSelf)
+            { 
                 Menu.SetActive(false);
+                moveMent.enabled = true;
+            }
             else
+            {
                 Menu.SetActive(true);
+                moveMent.enabled = false;
+            }
         }
     }
 
     public void ShowingDistance()
     {
         distanceText.text = gameManager.distanceTraveled.ToString() + "M";
+        Debug.Log(gameManager.distanceTraveled.ToString());
     }
 
     public void ExitGame()
@@ -59,5 +66,6 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
         Menu.SetActive(false);
+        moveMent.enabled = true;
     }
 }
