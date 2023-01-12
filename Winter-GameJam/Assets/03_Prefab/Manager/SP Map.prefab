@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1903223271030986420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1903223271030986421}
+  - component: {fileID: 1903223271030986426}
+  m_Layer: 0
+  m_Name: SP Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903223271030986421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903223271030986420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1903223271030986426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903223271030986420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d38681320f1a943a9f848adbb11bb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartMabs:
+  - {fileID: 3924880467286905141, guid: d58f171bd8e10cc4798db84aa8663b09, type: 3}
+  - {fileID: 3177676476220506192, guid: b190cdea52a50454bb082fe7ef04625c, type: 3}
+  - {fileID: 6784580977384651124, guid: 305190a2fba94f048a143dc55accc255, type: 3}
+  Mabs:
+  - {fileID: 8615247370640715247, guid: 562c7ddb514dd754eb84ae5762aaddec, type: 3}
+  - {fileID: 3924880467286905141, guid: d58f171bd8e10cc4798db84aa8663b09, type: 3}
+  - {fileID: 1146798469975143170, guid: a19a1fab3d501c449b7fda92bb16234e, type: 3}
+  - {fileID: 3207638662919934173, guid: a2d74282ad322a64ba633931ed77e288, type: 3}
+  - {fileID: 4979367694435760544, guid: 5e0a8da6072ccd7419c7f241315cbab8, type: 3}
+  - {fileID: 3177676476220506192, guid: b190cdea52a50454bb082fe7ef04625c, type: 3}
+  - {fileID: 3495744880560948049, guid: 6e854ee8ad57ca546925e37a0108f216, type: 3}
+  - {fileID: 6784580977384651124, guid: 305190a2fba94f048a143dc55accc255, type: 3}
+  - {fileID: 3070673836177632508, guid: d723ee7bb4f3b3a498789f9cdc5ddcd4, type: 3}
+  - {fileID: 2797214050867228313, guid: 68f21fcabb392974c8e52d67b1ca8322, type: 3}
+  - {fileID: 8009393864635776992, guid: 2a7d4d55fb622df448c492f49a28b3d8, type: 3}
+  - {fileID: 6668925596219250630, guid: 890275ea1c7bb43489f4e580f400de5c, type: 3}
+  xWidth: 14.16
+  yWidth: -6.73
+  mapSpawnCnt: 0
+  canSpawnMap: 0
