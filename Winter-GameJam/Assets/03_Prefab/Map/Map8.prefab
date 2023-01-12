@@ -694,6 +694,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Posion
       objectReference: {fileID: 0}
+    - target: {fileID: 8832124929824160052, guid: 7b1941a3af7632c4ea2505ded424b7dc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832124930259371348, guid: 7b1941a3af7632c4ea2505ded424b7dc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b1941a3af7632c4ea2505ded424b7dc, type: 3}
 --- !u!4 &1077598228110086221 stripped
