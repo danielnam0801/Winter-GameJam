@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Transform target;
     public Transform Target => target;
+    public bool EndGame = false;
 
     float targetsFirstPos;
     
