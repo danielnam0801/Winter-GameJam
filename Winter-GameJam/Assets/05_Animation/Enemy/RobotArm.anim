@@ -3699,7 +3699,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 3.0833333
+  - time: 2.9166667
     functionName: PlayAnimEnd
     data: 
     objectReferenceParameter: {fileID: 0}

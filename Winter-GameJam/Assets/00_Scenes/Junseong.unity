@@ -5797,6 +5797,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1177505951794971244, guid: 4ecf4d7d6373aaf4598e2c06ece4efd9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6886656659268404516, guid: 4ecf4d7d6373aaf4598e2c06ece4efd9, type: 3}
       propertyPath: m_Name
       value: RotateEnemy

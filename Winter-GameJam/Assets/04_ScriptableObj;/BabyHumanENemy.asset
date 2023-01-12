@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239acccc2db1bd843804f3afca01ed1b, type: 3}
   m_Name: BabyHumanENemy
   m_EditorClassIdentifier: 
-  maxSpeed: 3
+  maxSpeed: 2
   deAccel: 5
   Accel: 5
