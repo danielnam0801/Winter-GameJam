@@ -13,10 +13,13 @@ public class AgentAnimation : MonoBehaviour
     protected readonly int _groundHash = Animator.StringToHash("isGround");
     protected readonly int _airHash = Animator.StringToHash("isAir");
     protected readonly int _jumpHash = Animator.StringToHash("isJump"); 
+    
+    PlayerMovement _movement;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _movement = transform.parent.GetComponent<PlayerMovement>();
     }
 
     public void Moving(bool boolean)
@@ -33,6 +36,10 @@ public class AgentAnimation : MonoBehaviour
     public void Hiding(bool boolean)
     {
         _animator.SetBool(_hideHash,boolean);
+        if(boolean)
+            _movement.gameObject.layer = 7;
+        else
+            _movement.gameObject.layer = 6;
     }
 
     public void DoHide()

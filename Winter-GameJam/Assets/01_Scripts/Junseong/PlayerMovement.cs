@@ -78,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
             }
             Hiding();
         }
+        else _currentVelocity = 0;
         GroundCheck();
         HidingCheck();
         
@@ -166,10 +167,10 @@ public class PlayerMovement : MonoBehaviour
         onAir = !onGround;
         if (onAir == false) onGround = true;
 
-        if(onGround == true && !playerAttacked.isContacting)
-        {
-            isCatched = false;
-        }
+        //if(onGround == true && !playerAttacked.isContacting)
+        //{
+        //    isCatched = false;
+        //}
 
         playerAnim.IsGround(onGround);
     }

@@ -35,6 +35,7 @@ public class RotateDetectEnemy : MonoBehaviour
     private void Awake()
     {
         playerAttacked = GameObject.Find("Player").GetComponentInChildren<PlayerAttacked>();
+        _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         target = GameObject.Find("Player").transform;
         _rotateEnemy = transform.GetComponent<RotateEnemy>();
         if(transform.parent == null)
@@ -49,6 +50,7 @@ public class RotateDetectEnemy : MonoBehaviour
     }
     private void Start()
     {
+        
         //lightAngle = light2D.pointLightOuterAngle;
         //lightRadius = light2D.pointLightOuterRadius;    
     }
@@ -79,6 +81,10 @@ public class RotateDetectEnemy : MonoBehaviour
                         Debug.Log(this.gameObject.layer);
                     }
                 }
+                else
+                {
+                    StopCoroutine("PlayerWaitingCheck");
+                }
             }
         }
     }
@@ -95,7 +101,7 @@ public class RotateDetectEnemy : MonoBehaviour
     private void PlayerCheck()
     {
         Vector3 dir = target.position - transform.position;
-        RaycastHit2D playerCheckRay = Physics2D.Raycast(transform.position, dir, 15f, 1 << 6);
+        RaycastHit2D playerCheckRay = Physics2D.Raycast(transform.position, dir, 15f, 1 << 6 | 1 << 9 | 1 << 7);
         Debug.DrawRay(transform.position, dir * 15f);
         if(playerCheckRay.collider == null)
         {
@@ -103,7 +109,6 @@ public class RotateDetectEnemy : MonoBehaviour
         }
         else
         {
-            Debug.Log(playerCheckRay.collider.name);
             if (playerCheckRay.collider.CompareTag("Player"))
             {
                 isPlayerDetect = true;
@@ -119,8 +124,12 @@ public class RotateDetectEnemy : MonoBehaviour
     {
         
         yield return new WaitForSeconds(CountTimeWitPlayerCatch);
-        isPlayerDetectCount = false;
-        playerAttacked.OnWaitAttackedPlay(13, leftValue, upValue, backPowerValue, target.transform);
+        if (isPlayerDetect)
+        {
+            _playerMovement.isCatched = true;
+            isPlayerDetectCount = false;
+            playerAttacked.OnWaitAttackedPlay(13, leftValue, upValue, backPowerValue, target.transform);
+        }
     }
 
 }

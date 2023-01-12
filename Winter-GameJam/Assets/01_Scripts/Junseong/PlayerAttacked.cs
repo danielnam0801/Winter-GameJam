@@ -11,6 +11,7 @@ public class PlayerAttacked : MonoBehaviour
 
     public UnityEvent isNoWatingContactEvent; // 닿는 순간 바로 튈때 실행할이벤트
     public UnityEvent isWatingContactEvent; // 닿고 로봇팔이 던지는 적일때 실행할 것
+    public UnityEvent CinemachineEvent;
 
     PlayerMovement playerMovement;
 
@@ -81,14 +82,18 @@ public class PlayerAttacked : MonoBehaviour
     {
         playerMovement.isCatched = true;
         isAttacked = true;
+        CinemachineEvent?.Invoke();
         yield return new WaitForSeconds(1f);// 플레이어 정지되고 기다릴 시간;
         GameObject robot = Instantiate(robotArm, new Vector2(playerStopTransform.position.x, playerStopTransform.position.y), Quaternion.identity);
+        isWatingContactEvent?.Invoke();
         yield return new WaitUntil(()=>robot.GetComponentInChildren<RobotArm>().isPlayAnimEnd == true);
         isAttacked = false;
-        isNoWatingContactEvent.Invoke();
-        yield return new WaitForSeconds(0.05f);
+        rigidbody.gravityScale = 0f;
         rigidbody.velocity = Vector3.zero;
+        yield return new WaitForSeconds(0.05f);
         rigidbody.AddForce((Vector2.left * leftValue + Vector2.up * upValue) * backPower, ForceMode2D.Impulse);
+
+        rigidbody.gravityScale = 2f;
 
         yield return new WaitUntil(() => playerMovement.onGround);
         playerMovement.isCatched = false;
