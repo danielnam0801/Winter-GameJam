@@ -354,6 +354,7 @@ MonoBehaviour:
   - {fileID: 6668925596219250630, guid: 890275ea1c7bb43489f4e580f400de5c, type: 3}
   - {fileID: 6668925596219250630, guid: 890275ea1c7bb43489f4e580f400de5c, type: 3}
   - {fileID: 5901469079594144981, guid: 76b4d42dd0d5c674399969823a09c9ab, type: 3}
+  - {fileID: 5121648692356698871, guid: fe245e0e32eafca47ac993936a44066d, type: 3}
   activeMaps: []
   SpawnMabs: []
   xWidth: 14.16
