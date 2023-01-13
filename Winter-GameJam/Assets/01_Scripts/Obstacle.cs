@@ -18,6 +18,7 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.layer == 21)
         {
+            Debug.Log("Die");
             agentAnim.Dead();
             AfterDead.SetActive(true);
             move.enabled = false;

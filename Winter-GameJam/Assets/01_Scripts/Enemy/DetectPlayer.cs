@@ -28,6 +28,10 @@ public class DetectPlayer : MonoBehaviour
     private bool canAttack = true;
 
     Coroutine playerCheckCoroutine;
+    [SerializeField]
+    private LayerMask layerMask;
+    [SerializeField]
+    private LayerMask playerLayerMask;
 
     private void Awake()
     {
@@ -55,32 +59,23 @@ public class DetectPlayer : MonoBehaviour
     {
         if (playerAttacked.isAttacked == false)
         {
-            if (collision.gameObject.layer == 7 || collision.gameObject.layer == 9)
+            Debug.Log("Player" + collision.gameObject.layer);
+            if (collision.CompareTag("Player") && collision.gameObject.layer != playerLayerMask)
             {
-
-            }
-            else
-            {
-                if (collision.CompareTag("Player"))
+                Debug.Log("PlayerDeTECT성공");
+                PlayerCheck();
+                isCanDetect = true;
+                if (isPlayerDetect)
                 {
-                    //Debug.Log("PlayerDeTECT성공");
-                    PlayerCheck();
-                    isCanDetect = true;
-                    if (isPlayerDetect)
+                    if (canAttack)
                     {
-                        if (canAttack)
-                        {
-                            isPlayerDetectCount = true;
-                            StartCoroutine("PlayerWaitingCheck");
-                            canAttack = false;
-                            Debug.Log(this.gameObject.layer);
-                        }
-                    }
-                    else
-                    {
-                        StopCoroutine("PlayerWaitingCheck");
+                        isPlayerDetectCount = true;
+                        StartCoroutine("PlayerWaitingCheck");
+                        canAttack = false;
+                        Debug.Log(this.gameObject.layer);
                     }
                 }
+                else StopCoroutine("PlayerWaitingCheck");
             }
         }
     }
@@ -97,8 +92,9 @@ public class DetectPlayer : MonoBehaviour
     private void PlayerCheck()
     {
         Vector3 dir = target.position - transform.position;
-        RaycastHit2D playerCheckRay = Physics2D.Raycast(transform.position, dir, 15f, 1 << 6 | 1 << 9 | 1 << 7);
+        RaycastHit2D playerCheckRay = Physics2D.Raycast(transform.position, dir, 15f, layerMask);
         Debug.DrawRay(transform.position, dir * 15f);
+        Debug.Log("Player : " + playerCheckRay.collider.name);
         if (playerCheckRay.collider == null)
         {
             isPlayerDetect = false;
