@@ -583,6 +583,17 @@ MonoBehaviour:
   optionalRotationMode: 0
   optionalScrambleMode: 0
   optionalString: 
+--- !u!114 &155462115 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6974067161054116550, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
+  m_PrefabInstance: {fileID: 1747228535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc62616fc25b22439c3286a30be12f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &323844169
 GameObject:
   m_ObjectHideFlags: 0
@@ -8112,6 +8123,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6974067159794396136, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1810347
+      objectReference: {fileID: 0}
+    - target: {fileID: 6974067159794396136, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.09051739
+      objectReference: {fileID: 0}
     - target: {fileID: 6974067159794396139, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -8252,6 +8271,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1759734932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6974067159794396141, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
+  m_PrefabInstance: {fileID: 1747228535}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1759734937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759734932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ffe0dceb2948547a78ab26d4c02eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentAnim: {fileID: 155462115}
+  AfterDead: {fileID: 824512072}
+  move: {fileID: 1870222736}
 --- !u!1 &1835896825
 GameObject:
   m_ObjectHideFlags: 0
@@ -8294,7 +8333,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6974067159794396054, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
   m_PrefabInstance: {fileID: 1747228535}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1759734932}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6631b5c5f18f77e408d9b83967e52a29, type: 3}

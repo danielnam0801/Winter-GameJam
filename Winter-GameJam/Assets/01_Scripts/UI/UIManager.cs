@@ -53,9 +53,9 @@ public class UIManager : MonoBehaviour
     }
     IEnumerator GameExit()
     {
+        Debug.Log("게임 나가기");
         yield return new WaitForSeconds(0.5f);
         Application.Quit();
-        Debug.Log("게임 나가기");
     }
 
     public void Continue()

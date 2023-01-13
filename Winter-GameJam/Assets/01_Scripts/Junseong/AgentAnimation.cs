@@ -6,8 +6,8 @@ public class AgentAnimation : MonoBehaviour
 {
     protected Animator _animator;
     protected readonly int _movingHash = Animator.StringToHash("isMoving");
-    protected readonly int _deadHash = Animator.StringToHash("Dead");
-    protected readonly int _deathHash = Animator.StringToHash("Death");
+    protected readonly int _deadHash = Animator.StringToHash("isDead");
+    protected readonly int _deathHash = Animator.StringToHash("isDeath");
     protected readonly int _hideHash = Animator.StringToHash("isHiding");
     protected readonly int _hideTriggerHash = Animator.StringToHash("isHide");
     protected readonly int _groundHash = Animator.StringToHash("isGround");
