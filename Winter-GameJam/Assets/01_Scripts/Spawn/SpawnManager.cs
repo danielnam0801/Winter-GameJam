@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public int firstSpawnNum = 2;
     [Header("스폰할 맵 종류")]
     public List<GameObject> StartSpawnMap = new List<GameObject>();
     public List<GameObject> Mabs = new List<GameObject>();
@@ -30,10 +31,16 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator MapSpawn()
     {
-        for(int i = 0; i < StartSpawnMap.Count; i++)
+        for(int i = 0; i < firstSpawnNum; i++)
         {
+            Map map;
+            
+            if(i == 0)
+                map = Instantiate(StartSpawnMap[i].GetComponent<Map>());
+            else
+                map = Instantiate(StartSpawnMap[Random.Range(1, StartSpawnMap.Count + 1)].GetComponent<Map>());
+
             mapSpawnCnt++;
-            Map map = Instantiate(StartSpawnMap[i].GetComponent<Map>());
             map.mapNum = mapSpawnCnt - 1;
             map.gameObject.transform.position = new Vector3((map.mapNum) * xWidth, yWidth, 0); 
             SpawnMabs.Add(map);

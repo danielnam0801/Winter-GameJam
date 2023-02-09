@@ -5721,9 +5721,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 1.81, z: -10}
+  m_FollowOffset: {x: 0, y: 1.8, z: -10}
   m_XDamping: 1
-  m_YDamping: 1.6
+  m_YDamping: 0.5
   m_ZDamping: 1
   m_AngularDampingMode: 0
   m_PitchDamping: 0
@@ -6868,7 +6868,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424669353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.78, z: -10}
+  m_LocalPosition: {x: 0, y: -1.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 994941150}
@@ -7276,7 +7276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559325194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.78, z: -10}
+  m_LocalPosition: {x: 0, y: -1.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8007,9 +8007,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d38681320f1a943a9f848adbb11bb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstSpawnNum: 3
   StartSpawnMap:
   - {fileID: 3431624004119291107, guid: edd3d57fbde7b4a4a9d9e6d80a9932f6, type: 3}
-  - {fileID: 3924880467286905141, guid: d58f171bd8e10cc4798db84aa8663b09, type: 3}
+  - {fileID: 3431624004119291107, guid: edd3d57fbde7b4a4a9d9e6d80a9932f6, type: 3}
   Mabs:
   - {fileID: 8615247370640715247, guid: 562c7ddb514dd754eb84ae5762aaddec, type: 3}
   - {fileID: 3924880467286905141, guid: d58f171bd8e10cc4798db84aa8663b09, type: 3}
@@ -8723,6 +8724,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 1.1655287
       objectReference: {fileID: 0}
+    - target: {fileID: 6974067159794396136, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 405a6749cb5371942b66945411d1cd80, type: 2}
     - target: {fileID: 6974067159794396136, guid: e7284024f8ae95d43a6c5acd1324e63a, type: 3}
       propertyPath: m_Offset.y
       value: -0.08276439
