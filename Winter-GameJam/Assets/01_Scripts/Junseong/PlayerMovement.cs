@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     public UnityEvent OnMove;
     public UnityEvent OnStop;
-
+    
     public MovementSO _movementSO;
 
     [Header("Bool")]

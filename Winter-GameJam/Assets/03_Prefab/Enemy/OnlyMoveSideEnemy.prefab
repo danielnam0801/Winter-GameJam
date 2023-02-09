@@ -111,12 +111,6 @@ MonoBehaviour:
   isCanDetect: 0
   isPlayerDetect: 0
   isPlayerDetectCount: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 704
-  playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 640
 --- !u!1 &1169563393460201583
 GameObject:
   m_ObjectHideFlags: 0

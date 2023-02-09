@@ -86,6 +86,10 @@ public class RotateDetectEnemy : MonoBehaviour
                             Debug.Log(this.gameObject.layer);
                         }
                     }
+                    else
+                    {
+                        StopCoroutine("PlayerWaitingCheck");
+                    }
                 }
             }
         }

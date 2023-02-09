@@ -13,6 +13,8 @@ public class PlayerAttacked : MonoBehaviour
     public UnityEvent isWatingContactEvent; // 닿고 로봇팔이 던지는 적일때 실행할 것
     public UnityEvent CinemachineEvent;
 
+    public UnityEvent PlayerDieEvent;
+
     PlayerMovement playerMovement;
 
     Rigidbody2D rigidbody;
@@ -33,6 +35,7 @@ public class PlayerAttacked : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
     }
+
     private void Update()
     {
         if (isAttacked)
@@ -101,6 +104,13 @@ public class PlayerAttacked : MonoBehaviour
         playerMovement.isCatched = false;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.layer == 1 << 21)
+        {
+            PlayerDieEvent?.Invoke();
+        }
+    }
 
     public void ColliderActiveFalse(bool boolean)
     {
